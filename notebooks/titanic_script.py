@@ -75,6 +75,8 @@ df_test = convert_age(df_test)
 
 
 print(df_train.describe())
+print(df_train.toPandas().head())
+print(df_train.toPandas().describe())
 
 def average_missing_features(df):
     df = df.withColumn("age", when(col('age').isNull(), age_mean).otherwise(col('age')))
@@ -85,6 +87,7 @@ def average_missing_features(df):
 
 
 df_train = average_missing_features(df_train)
+
 df_train.show()
 
 df_test = average_missing_features(df_test)
